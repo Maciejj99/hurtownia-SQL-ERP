@@ -46,12 +46,6 @@ SELECT p.nazwa AS produkt,
 FROM Magazyn m
 JOIN Produkty p ON m.ID_Produktu = p.ID
 ORDER BY p.nazwa;
-![image](https://github.com/user-attachments/assets/8b87ea42-6e67-491e-814d-7487f428adb3)
-
-
-
-
-
 
 -- Sprzedaż miesięczna
 SELECT DATE_FORMAT(data_zamowienia, '%Y-%m') AS miesiac,
