@@ -27,7 +27,7 @@ Baza danych składa się z następujących tabel:
                  [Magazyn]
 
 
-## Zapytania SQL / Raporty 
+## Przykładowe zapytania SQL / Raporty 
 
 ```sql
 -- Wyświetlenie wszystkich klientów
@@ -86,6 +86,9 @@ JOIN Produkty p ON pz.ID_Produktu = p.ID
 GROUP BY p.nazwa
 ORDER BY laczna_ilosc DESC
 LIMIT 5;
+```
 
+
+![image](https://github.com/user-attachments/assets/52d9ade6-2969-4af8-a144-8fbd461a4b76)
 
 
