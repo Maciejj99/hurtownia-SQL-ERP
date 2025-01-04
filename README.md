@@ -27,7 +27,7 @@ Baza danych składa się z następujących tabel:
                  [Magazyn]
 
 
-## Przykładowe zapytania SQL / Raporty 
+## Przykładowe zapytania SQL
 
 ```sql
 -- Wyświetlenie wszystkich klientów
@@ -38,7 +38,9 @@ SELECT * FROM Zamowienia WHERE status_zamowienia = 'Zrealizowane';
 
 -- Stan magazynowy dla produktu o ID 1
 SELECT * FROM Magazyn WHERE ID_Produktu = 1;
-
+```
+## Raporty 
+```sql
 -- Stan magazynowy 
 SELECT p.nazwa AS produkt,
        m.ilosc_dostepna AS stan_magazynowy,
@@ -46,7 +48,9 @@ SELECT p.nazwa AS produkt,
 FROM Magazyn m
 JOIN Produkty p ON m.ID_Produktu = p.ID
 ORDER BY p.nazwa;
-
+```
+![image](https://github.com/user-attachments/assets/f1822937-a46e-4456-994a-0c2e297b437d)
+```sql
 -- Sprzedaż miesięczna
 SELECT DATE_FORMAT(data_zamowienia, '%Y-%m') AS miesiac,
        SUM(pz.ilosc * pz.cena) AS suma_sprzedazy
@@ -54,7 +58,9 @@ FROM Zamowienia z
 JOIN Pozycje_Zamowienia pz ON z.ID = pz.ID_Zamowienia
 WHERE status_zamowienia = 'Zrealizowane'
 GROUP BY miesiac;
-
+```
+![image](https://github.com/user-attachments/assets/f9799e5f-e929-4354-a7c1-f1554983cf16)
+```sql
 -- Klienci z największą liczbą zamówień
 SELECT k.nazwa AS klient,
        COUNT(z.ID) AS liczba_zamowien
@@ -63,21 +69,18 @@ JOIN Zamowienia z ON k.ID = z.ID_Klienta
 GROUP BY k.nazwa
 ORDER BY liczba_zamowien DESC
 LIMIT 10;
-
+```
+![image](https://github.com/user-attachments/assets/cd6fecb3-d671-4027-8889-7af02facee51)
+```sql
 -- Produkty, które nigdy nie były zamawiane
 SELECT p.ID AS id_produktu,
        p.nazwa AS produkt
 FROM Produkty p
 LEFT JOIN Pozycje_Zamowienia pz ON p.ID = pz.ID_Produktu
 WHERE pz.ID_Produktu IS NULL;
-
--- Średnia wartość zamówienia
-SELECT z.ID AS numer_zamowienia,
-       AVG(pz.ilosc * pz.cena) AS srednia_wartosc
-FROM Zamowienia z
-JOIN Pozycje_Zamowienia pz ON z.ID = pz.ID_Zamowienia
-GROUP BY z.ID;
-
+```
+![image](https://github.com/user-attachments/assets/b280f9c3-27f4-422c-b5ef-a845fe25ec08)
+```sql
 -- Najczęściej zamawiane produkty
 SELECT p.nazwa AS produkt,
        SUM(pz.ilosc) AS laczna_ilosc
@@ -87,8 +90,9 @@ GROUP BY p.nazwa
 ORDER BY laczna_ilosc DESC
 LIMIT 5;
 ```
+![image](https://github.com/user-attachments/assets/5fb0c7fc-62cf-49dd-87ca-fec75a7f539c)
 
 
-![image](https://github.com/user-attachments/assets/52d9ade6-2969-4af8-a144-8fbd461a4b76)
+
 
 
